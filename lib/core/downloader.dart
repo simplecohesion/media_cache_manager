@@ -27,8 +27,8 @@ abstract class Downloader {
   }
 
   static Future<Directory> _getDownloadDirectory() async {
-    final appDir = await getApplicationDocumentsDirectory();
-    final downloadDir = Directory('${appDir.path}/files');
+    final cacheDir = await getTemporaryDirectory(); // getLibraryDirectory();
+    final downloadDir = Directory('${cacheDir.path}/files');
     final isDirExist = await downloadDir.exists();
     if (!isDirExist) {
       await downloadDir.create(recursive: true);

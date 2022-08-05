@@ -5,11 +5,11 @@ import 'package:path_provider/path_provider.dart';
 import 'constants.dart';
 
 abstract class Downloader {
-
-  static Future<String?> downloadFile(String url, {required Function(int progress, int total) onProgress}) async {
+  static Future<String?> downloadFile(String url,
+      {required Function(int progress, int total) onProgress}) async {
     try {
       final downloadDir = await _getDownloadDirectory();
-      String fileName = getFileNameFromURL(url, '/');
+      String fileName = getFileNameFromURL(url, '/', '&');
       await Dio().download(
         url,
         '${downloadDir.path}/$fileName',
@@ -30,7 +30,7 @@ abstract class Downloader {
     final appDir = await getApplicationDocumentsDirectory();
     final downloadDir = Directory('${appDir.path}/files');
     final isDirExist = await downloadDir.exists();
-    if(!isDirExist) {
+    if (!isDirExist) {
       await downloadDir.create(recursive: true);
     }
     return downloadDir;
@@ -40,5 +40,4 @@ abstract class Downloader {
     final dir = await _getDownloadDirectory();
     await dir.delete(recursive: true);
   }
-
 }

@@ -16,14 +16,14 @@ class DownloadMediaBuilder extends StatefulWidget {
   /// Snapshot Will provide you the status of process
   /// (Success, Error, Loading)
   /// and file if downloaded and download progress
-  final Widget? Function(BuildContext context, DownloadMediaSnapshot snapshot) builder;
+  final Widget? Function(BuildContext context, DownloadMediaSnapshot snapshot)
+      builder;
 
   @override
   State<DownloadMediaBuilder> createState() => _DownloadMediaBuilderState();
 }
 
 class _DownloadMediaBuilderState extends State<DownloadMediaBuilder> {
-
   late _DownloadMediaBuilderController __downloadMediaBuilderController;
   late DownloadMediaSnapshot snapshot;
 
@@ -53,15 +53,17 @@ class _DownloadMediaBuilderState extends State<DownloadMediaBuilder> {
   @override
   Widget build(BuildContext context) {
     return widget.builder(
-      context,
-      snapshot,
-    ) ?? const SizedBox();
+          context,
+          snapshot,
+        ) ??
+        const SizedBox();
   }
 }
 
 class _DownloadMediaBuilderController {
-
-  _DownloadMediaBuilderController({required DownloadMediaSnapshot snapshot, required Function(DownloadMediaSnapshot) onSnapshotChanged}) {
+  _DownloadMediaBuilderController(
+      {required DownloadMediaSnapshot snapshot,
+      required Function(DownloadMediaSnapshot) onSnapshotChanged}) {
     _onSnapshotChanged = onSnapshotChanged;
     _snapshot = snapshot;
   }

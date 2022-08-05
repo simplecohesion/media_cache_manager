@@ -9,7 +9,7 @@ abstract class Downloader {
       {required Function(int progress, int total) onProgress}) async {
     try {
       final downloadDir = await _getDownloadDirectory();
-      String fileName = getFileNameFromURL(url, '/', '&');
+      String fileName = getFileNameFromURL(url, '/', '?');
       await Dio().download(
         url,
         '${downloadDir.path}/$fileName',

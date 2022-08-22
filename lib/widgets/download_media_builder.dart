@@ -38,7 +38,13 @@ class _DownloadMediaBuilderState extends State<DownloadMediaBuilder> {
     /// Initializing Widget Logic Controller
     __downloadMediaBuilderController = _DownloadMediaBuilderController(
       snapshot: snapshot,
-      onSnapshotChanged: (snapshot) => setState(() => this.snapshot = snapshot),
+      onSnapshotChanged: (snapshot) {
+        if (mounted) {
+          setState(() => this.snapshot = snapshot);
+        } else {
+          this.snapshot = snapshot;
+        }
+      },
     );
 
     /// Initializing Caching Database
